@@ -7,8 +7,18 @@ function App() {
   
 
   return (
-    <>
-      <h1>Ecommerce App</h1>
+    <><div>
+        <header>
+          <h1>Ecommerce App</h1>
+          <hr />
+        </header>
+        <main>
+          <h3>Product List</h3>
+        </main>
+        <footer>
+          &copy; 2025. All Rights Reserved.
+        </footer>
+      </div>
     </>
   )
 }
