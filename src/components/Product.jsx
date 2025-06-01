@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../App';
-import './Product.css';
+import React, { useContext } from 'react'
+import { AppContext } from '../App'
+import './Product.css'
 
 export default function Product() {
-  const { currentUser } = useContext(UserContext);
-
+  const { user } = useContext(AppContext)
   return (
     <div className="product-container">
-      <h2>Product List</h2>
-      {currentUser ? <p>Welcome, {currentUser.name}</p> : <p>Please login to shop.</p>}
+      <h3>Welcome {user.name}!</h3>
+      Product List
     </div>
-  );
+  )
 }

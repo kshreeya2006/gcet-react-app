@@ -1,21 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../App';
-import './Register.css';
+import React, { useState, useContext } from "react";
+import { AppContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 export default function Register() {
-  const { users, setUsers, setCurrentUser } = useContext(UserContext);
-  const [user, setUser] = useState({ name: '', email: '', password: '' });
-  const navigate = useNavigate();
+  const { users, setUsers } = useContext(AppContext);
+  const [user, setUser] = useState({});
+  const Navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (users.some(u => u.email === user.email)) {
-      alert('Email already registered');
-      return;
-    }
+  const handleSubmit = () => {
     setUsers([...users, user]);
-    setCurrentUser(user);
-    navigate('/');
+    Navigate("/login");
   };
 
   return (
@@ -25,24 +20,27 @@ export default function Register() {
         className="register-input"
         type="text"
         placeholder="Name"
-        value={user.name}
         onChange={(e) => setUser({ ...user, name: e.target.value })}
       /><br />
       <input
         className="register-input"
-        type="email"
-        placeholder="Email"
-        value={user.email}
+        type="text"
+        placeholder="Email address"
         onChange={(e) => setUser({ ...user, email: e.target.value })}
       /><br />
       <input
         className="register-input"
         type="password"
-        placeholder="Password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        placeholder="New Password"
+        onChange={(e) => setUser({ ...user, pass: e.target.value })}
       /><br />
-      <button className="register-button" onClick={handleRegister}>Submit</button>
+      <button className="register-button" onClick={handleSubmit}>Submit</button>
+      <hr />
+      <ul className="register-list">
+        {users && users.map((value, idx) => (
+          <li key={idx}>{value.name} - {value.email} - {value.pass}</li>
+        ))}
+      </ul>
     </div>
   );
 }

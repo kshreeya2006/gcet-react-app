@@ -1,0 +1,35 @@
+header {
+  background: #eaf4fb;
+  padding: 24px 0 10px 0;
+  text-align: center;
+  border-bottom: 1px solid #b3d1f7;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  color: #407fc7;
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+header a {
+  color: #5b9be4;
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+header a:hover {
+  color: #407fc7;
+  text-decoration: underline;
+}
+
+header hr {
+  margin-top: 18px;
+  border: none;
+  border-top: 1px solid #b3d1f7;
+}

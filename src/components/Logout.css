@@ -1,0 +1,13 @@
+.logout-container {
+  max-width: 350px;
+  margin: 60px auto;
+  padding: 28px 24px;
+  border-radius: 10px;
+  background: #f5faff;
+  box-shadow: 0 2px 12px rgba(100, 150, 220, 0.07);
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #407fc7;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
