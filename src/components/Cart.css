@@ -1,0 +1,23 @@
+.cart-container {
+  max-width: 500px;
+  margin: 36px auto;
+  padding: 28px 24px;
+  border-radius: 10px;
+  background: #f5faff;
+  box-shadow: 0 2px 12px rgba(100, 150, 220, 0.07);
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.cart-container h2 {
+  color: #407fc7;
+  margin-bottom: 18px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.cart-container p {
+  font-size: 1.1rem;
+  color: #2a3d5c;
+  margin-top: 10px;
+}
