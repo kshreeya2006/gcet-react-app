@@ -7,9 +7,15 @@ export default function Product() {
   const [products, setProducts] = useState([]);
   const API= import.meta.env.VITE_API_URL;
   const fetchProducts = async () => {
-    const res = await axios.get(`${API}/products`);
-    console.log("API URL:", `${API}/products`); 
-    setProducts(res.data);
+    try {
+      const res = await axios.get(`${API}/products`);
+      setProducts(res.data);
+      setError(""); 
+    } catch (err) {
+      setError("Failed to load products. Please try again later.");
+      setProducts([]); 
+      console.error("Error fetching products:", err);
+    }
   };
 
   useEffect(() => {
