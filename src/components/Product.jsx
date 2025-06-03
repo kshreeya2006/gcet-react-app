@@ -8,6 +8,7 @@ export default function Product() {
   const API= import.meta.env.VITE_API_URL
   const fetchProducts = async () => {
     const res = await axios.get(`${API}/products`);
+    console.log("API URL:", `${API}/products`); 
     setProducts(res.data);
   };
 
