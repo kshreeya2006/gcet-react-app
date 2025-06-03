@@ -5,8 +5,9 @@ import axios from "axios";
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
+  const API= import.meta.env.VITE_API_URL
   const fetchProducts = async () => {
-    const res = await axios.get("http://localhost:8080/products");
+    const res = await axios.get(`${API}/products`);
     setProducts(res.data);
   };
 
