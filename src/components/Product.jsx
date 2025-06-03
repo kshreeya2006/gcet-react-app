@@ -5,7 +5,7 @@ import axios from "axios";
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
-  const API= import.meta.env.VITE_API_URL
+  const API= import.meta.env.VITE_API_URL;
   const fetchProducts = async () => {
     const res = await axios.get(`${API}/products`);
     console.log("API URL:", `${API}/products`); 
