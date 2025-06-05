@@ -7,6 +7,8 @@
   box-shadow: 0 2px 12px rgba(100, 150, 220, 0.07);
   text-align: center;
   font-family: 'Segoe UI', Arial, sans-serif;
+  color: #2a3d5c;
+  font-size: 1.1rem;
 }
 
 .product-container h3 {
@@ -16,7 +18,37 @@
   font-weight: 600;
 }
 
-.product-container {
-  color: #2a3d5c;
-  font-size: 1.1rem;
+.error-message {
+  color: red;
+  margin: 10px 0;
 }
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.product-item {
+  background: #eaf2fc;
+  border: 1px solid #c9ddf8;
+  border-radius: 8px;
+  padding: 12px 18px;
+  width: 120px;
+  box-shadow: 0 1px 6px rgba(64, 127, 199, 0.1);
+}
+
+.product-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #2a3d5c;
+}
+
+.product-item p {
+  margin: 0;
+  font-weight: bold;
+  color: #407fc7;
+}
+

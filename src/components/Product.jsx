@@ -25,15 +25,20 @@ export default function Product() {
   }, []);
 
   return (
-    <div>
-      <h3>Welcome {user.name}!</h3>
-      <h2>Product List</h2>
-      {error && <div style={{ color: "red", margin: "10px 0" }}>{error}</div>}
+  <div className="product-container">
+    <h3>Welcome {user.name}!</h3>
+    <h2>Product List</h2>
+    {error && <div className="error-message">{error}</div>}
+
+    <div className="product-list">
       {products.map(product => (
-        <li key={product.id} style={{ margin: "10px 0" }}>
-          <strong>{product.name}</strong>: ${product.price}
-        </li>
+        <div className="product-item" key={product.id}>
+          <strong>{product.name}</strong>
+          <p>${product.price}</p>
+        </div>
       ))}
     </div>
-  );
+  </div>
+);
+
 }
