@@ -4,8 +4,7 @@ import axios from "axios";
 import './Product.css';
 
 export default function Product() {
-  const { user } = useContext(AppContext);
-  const [products, setProducts] = useState([]);
+  const { user, products, setProducts, cart, setCart } = useContext(AppContext);
   const [error, setError] = useState(""); 
   const API = import.meta.env.VITE_API_URL;
 
@@ -20,26 +19,35 @@ export default function Product() {
       console.error("Error fetching products:", err);
     }
   };
-
+  
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  return (
-  <div className="product-container">
-    <h3>Welcome {user.name}!</h3>
-    <h2>Product List</h2>
-    {error && <div className="error-message">{error}</div>}
+  const addToCart = (id) => {
+    const updatedCart = { ...cart, [id]: (cart[id] || 0) + 1 };
+    setCart(updatedCart);
+  };
 
-    <div className="product-list">
-      {products.map(product => (
-        <div className="product-card" key={product.id}>
-          <strong>{product.name}</strong>
-          <p>${product.price}</p>
-          <button className="add-to-cart-btn">Add to Cart</button>
-        </div>
-      ))}
+  return (
+    <div className="product-container">
+      <h3>Welcome {user?.name || "Guest"}!</h3>
+      <h2>Product List</h2>
+      {error && <div className="error-message">{error}</div>}
+
+      <div className="product-list">
+        {products.map(product => (
+          <div className="product-card" key={product.pid}>
+            <strong>{product.name}</strong>
+            <p>₹{product.price}</p>
+            <button 
+              onClick={() => addToCart(product.pid)} 
+              className="add-to-cart-btn">
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 }

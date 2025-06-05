@@ -9,7 +9,9 @@ export default function Header() {
   return (
     <header>
       <h1>My Online Shop</h1>
-      <Link to="/">Home</Link> <Link to="/cart">Cart</Link>
+      <Link to="/">Home</Link> 
+      <Link to="/cart">Cart</Link>
+      <Link to="/order">Order</Link>
       {user.token ? (
         <Link to="/logout">Logout</Link>
       ) : (
