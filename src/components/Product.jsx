@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../App";
 import axios from "axios";
+import './Product.css';
 
 export default function Product() {
   const { user } = useContext(AppContext);
@@ -32,7 +33,7 @@ export default function Product() {
 
     <div className="product-list">
       {products.map(product => (
-        <div className="product-item" key={product.id}>
+        <div className="product-card" key={product.id}>
           <strong>{product.name}</strong>
           <p>${product.price}</p>
         </div>
@@ -40,5 +41,6 @@ export default function Product() {
     </div>
   </div>
 );
+
 
 }
