@@ -36,11 +36,10 @@ export default function Product() {
         <div className="product-card" key={product.id}>
           <strong>{product.name}</strong>
           <p>${product.price}</p>
+          <button className="add-to-cart-btn">Add to Cart</button>
         </div>
       ))}
     </div>
   </div>
 );
-
-
 }
