@@ -16,21 +16,23 @@ export default function Login() {
     try {
       const res = await axios.post(`${API}/users/login`, credentials);
 
-      if (!res.data || res.data.message === "Invalid user or password") {
+      if (!res.data || res.data.message === "Invalid user") {
         setMsg("Invalid email or password.");
         return;
       }
 
-      
+      const { user: userData, token } = res.data;
+
       setUser({
-        name: res.data.name,
-        email: res.data.email,
-        token: "123", 
+        name: userData.name,
+        email: userData.email,
+        token: token,
       });
-      setMsg("Welcome " + res.data.name);
-      navigate("/"); 
+
+      setMsg("Welcome " + userData.name);
+      navigate("/");
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Login error:", err.response?.data || err.message);
       setMsg("Server error. Try again later.");
     }
   };
@@ -49,6 +51,7 @@ export default function Login() {
         <input
           className="login-input"
           type="email"
+          required
           placeholder="Email address"
           onChange={(e) =>
             setCredentials({ ...credentials, email: e.target.value })
@@ -59,6 +62,7 @@ export default function Login() {
         <input
           className="login-input"
           type="password"
+          required
           placeholder="Password"
           onChange={(e) =>
             setCredentials({ ...credentials, password: e.target.value })

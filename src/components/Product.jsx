@@ -10,7 +10,12 @@ export default function Product() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`${API}/products/all`);
+      const token = localStorage.getItem("token"); // retrieve token from localStorage
+      const res = await axios.get(`${API}/products/all`, {
+        headers: {
+          Authorization: `Bearer ${token}` // send token in Authorization header
+        }
+      });
       setProducts(res.data);
       setError(""); 
     } catch (err) {
