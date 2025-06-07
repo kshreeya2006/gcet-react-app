@@ -33,7 +33,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route index element={<Product />} />
+            <Route index element={<Login />} />
             <Route path="/" element={<Product />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/login" element={<Login />}></Route>
