@@ -1,63 +1,48 @@
-// src/components/Login.jsx
-import React, { useState, useContext } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { AppContext } from "../App";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
-
-const API = import.meta.env.VITE_API_URL;
-
+import axios from "axios";
 export default function Login() {
-  const { user, setUser } = useContext(AppContext);
-  const [msg, setMsg] = useState("");
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
-
+  const { users, user, setUser } = useContext(AppContext);
+  const [msg, setMsg] = useState();
+  const Navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
   const handleSubmit = async () => {
-    try {
-      const res = await axios.post(`${API}/users/login`, credentials);
+    // const found = users.find(
+    //   (value) => value.email === user.email && value.pass === user.pass
+    // );
+    const url = `${API}/users/login`;
+    const found = await axios.post(url, user);
 
-      if (!res.data || res.data.message === "Invalid user or password") {
-        setMsg("Invalid email or password.");
-        return;
-      }
-
-      // Success - Set user info from DB
-      setUser({
-        name: res.data.name,
-        email: res.data.email,
-        token: res.data.token, // if you later use JWT or token, replace this
-      });
-      setMsg("Welcome " + res.data.name);
-      navigate("/"); // redirect to home
-    } catch (err) {
-      console.error("Login error:", err);
-      setMsg("Server error. Try again later.");
+    if (found.data.token) {
+      setUser({...found.data.result,token:found.data.token});
+      Navigate("/");
+    } else {
+      setMsg("Invalid User or Password");
     }
   };
 
-  const goToRegister = () => navigate("/register");
+  const goToRegister = () => {
+    Navigate("/register");
+  };
 
   return (
-    <div className="login-box">
+    <div style={{ margin: "30px" }}>
       <h3>Login</h3>
-      {msg && <p>{msg}</p>}
+      {msg}
       <p>
         <input
-          type="email"
+          type="text"
           placeholder="Email address"
-          onChange={(e) =>
-            setCredentials({ ...credentials, email: e.target.value })
-          }
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
         />
       </p>
       <p>
         <input
           type="password"
           placeholder="Password"
-          onChange={(e) =>
-            setCredentials({ ...credentials, password: e.target.value })
-          }
+          onChange={(e) => setUser({ ...user, pass: e.target.value })}
         />
       </p>
       <button onClick={handleSubmit}>Submit</button>

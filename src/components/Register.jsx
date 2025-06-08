@@ -42,13 +42,13 @@ export default function Register() {
           onChange={(e) => setUser({ ...user, pass: e.target.value })}
         />
       </p>
-      <p>
+      {/* <p>
         <input
           type="text"
           placeholder="Role"
           onChange={(e) => setUser({ ...user, role: e.target.value })}
         />
-      </p>
+      </p> */}
       <button onClick={handleSubmit}>Submit</button>
       <hr />
       {users &&
