@@ -13,7 +13,7 @@ export default function Header() {
         <Link to="/">Home</Link>
         <Link to="/order">Order</Link>
         <Link to="/cart">Cart</Link>
-        {user?.token ? (
+        {user?.token === "1" ? (
           <Link to="/logout">Logout</Link>
         ) : (
           <Link to="/login">Login</Link>

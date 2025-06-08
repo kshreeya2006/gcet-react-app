@@ -5,10 +5,12 @@ import "./Logout.css";
 
 export default function Logout() {
   const { setUser } = useContext(AppContext);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setUser({});
-    Navigate("/login");
-  }, [setUser, Navigate]);
+    setUser({ token: "0" }); 
+    navigate("/login");
+  }, [setUser, navigate]);
+
   return <div className="logout-container">Logging out...</div>;
 }

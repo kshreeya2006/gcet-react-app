@@ -12,27 +12,30 @@ export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
+
   const handleSubmit = async () => {
-    try {
-      const res = await axios.post(`${API}/users/login`, credentials);
+  try {
+    const res = await axios.post(`${API}/users/login`, credentials);
 
-      if (!res.data || res.data.message === "Invalid user or password") {
-        setMsg("Invalid email or password.");
-        return;
-      }
-
-      setUser({
-        name: res.data.name,
-        email: res.data.email,
-        token: res.data.token,
-      });
-      setMsg("Welcome " + res.data.name);
-      navigate("/");
-    } catch (err) {
-      console.error("Login error:", err);
-      setMsg("Server error. Try again later.");
+    if (!res.data || res.data.message === "Invalid user or password") {
+      setMsg("Invalid email or password.");
+      return;
     }
-  };
+
+    setUser({
+      name: res.data.name,
+      email: res.data.email,
+      token: "1", 
+    });
+
+    setMsg("Welcome " + res.data.name);
+    navigate("/");
+  } catch (err) {
+    console.error("Login error:", err);
+    setMsg("Server error. Try again later.");
+  }
+};
+
 
   const goToRegister = () => navigate("/register");
 
