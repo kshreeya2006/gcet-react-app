@@ -8,9 +8,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
 import Header from "./components/Header";
-import Order from "./components/Order";
 import Footer from "./components/Footer";
-import Admin from "./components/Admin";
+import Order from "./components/Order";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createContext } from "react";
 export const AppContext = createContext();
@@ -21,18 +20,7 @@ function App() {
   const [cart, setCart] = useState({});
   return (
     <div>
-      <AppContext.Provider
-        value={{
-          users,
-          setUsers,
-          user,
-          setUser,
-          products,
-          setProducts,
-          cart,
-          setCart,
-        }}
-      >
+      <AppContext.Provider value={{ users, setUsers, user, setUser, products, setProducts, cart, setCart, }}>
         <BrowserRouter>
           <Header />
           <Routes>
@@ -40,10 +28,9 @@ function App() {
             <Route path="/" element={<Product />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/login" element={<Login />}></Route>
-             <Route path="/order" element={<Order />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/register" element={<Register />}></Route>
-             <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/order" element={<Order />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

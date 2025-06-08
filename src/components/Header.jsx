@@ -1,23 +1,25 @@
-import React from "react";
-import App, { AppContext } from "../App";
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../App";
 import { Link } from "react-router-dom";
+import "./Header.css";
+
 export default function Header() {
   const { user } = useContext(AppContext);
+
   return (
-    <div>
+    <header>
       <h1>My Online Shop</h1>
-      <Link to="/">Home</Link>-<Link to="/cart">Cart</Link>-
-      <Link to="/order">Order</Link>-
-      {user.token ? (
-        <>
-          {user.role === "admin" && <Link to="/admin">Admin</Link>}-
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/order">Order</Link>
+        <Link to="/cart">Cart</Link>
+        {user?.token ? (
           <Link to="/logout">Logout</Link>
-        </>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+      </nav>
       <hr />
-    </div>
+    </header>
   );
 }
